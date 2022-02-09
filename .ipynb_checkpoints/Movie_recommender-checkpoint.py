@@ -35,7 +35,6 @@ def get_cos_sim(series):
     if(series.name == 'description'):
         tf = TfidfVectorizer(analyzer='word',ngram_range=(1,2),min_df=0,stop_words='english')
         tfidf_matrix = tf.fit_transform(series.values.astype('U'))
-        
         cos_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
         return cos_sim
     else:
@@ -158,11 +157,15 @@ with content_container:
         if title == '':
             title = 'The Godfather'
         
-        st.subheader(f'''Because you liked: {title}''')
-        temp1=[]
-        width = [3]*11
-        temp1[0:10] = st.columns(width)
-        if title in simple_reccomenders.title.unique():
+        if (title in simple_reccomenders.title.unique() ) | (simple_reccomenders.title.str.contains(fr"{title}", case=False).any()):
+            if title in simple_reccomenders.title.unique():
+                title = title
+            else:
+                title = simple_reccomenders[simple_reccomenders.title.str.contains(rf"{title}",case=False,na=False)]['title'].to_list()[0]
+            st.subheader(f'''Because you liked: {title}''')
+            temp1=[]
+            width = [3]*11
+            temp1[0:10] = st.columns(width)
             content_based_movies=get_content_based_movies(title,simple_reccomenders.description)
             for j, row in content_based_movies.head(10).iterrows():
                     with temp1[j]:
@@ -171,8 +174,10 @@ with content_container:
                         st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         # COMMENT FOR REAL APP
                         # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+        
         else:
-            st.write('No such movie in database!')
+            st.write('No such movie in database!')                    
+                    
          
         
 ## Actor director movies
@@ -196,11 +201,17 @@ with actor_director_container:
         if title == '':
             title = 'The Godfather'
         
-        st.subheader(f'''Because you liked: {title}''')
-        temp1=[]
-        width = [3]*11
-        temp1[0:10] = st.columns(width)
-        if title in simple_reccomenders.title.unique():
+        
+        if (title in simple_reccomenders.title.unique() ) | (simple_reccomenders.title.str.contains(fr"{title}", case=False).any()):
+            st.write(title)
+            if title in simple_reccomenders.title.unique():
+                title = title
+            else:
+                title = simple_reccomenders[simple_reccomenders.title.str.contains(rf"{title}",case=False,na=False)]['title'].to_list()[0]
+            st.subheader(f'''Because you liked: {title}''')
+            temp1=[]
+            width = [3]*11
+            temp1[0:10] = st.columns(width)
             content_based_movies=get_content_based_movies(title,simple_reccomenders.soup)
             for j, row in content_based_movies.head(10).iterrows():
                     with temp1[j]:
@@ -209,6 +220,7 @@ with actor_director_container:
                         st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         # COMMENT FOR REAL APP
                         # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+        
         else:
             st.write('No such movie in database!')                    
                     
@@ -228,7 +240,7 @@ with user_based_container:
             st.write('.\n')
             st.write('Choose user:')
         with col1:
-            userId = st.number_input('', value=5, min_value=1, step=1, max_value=671)
+            userId = st.number_input('', value=5, min_value=0, step=1, max_value=999)
             userId = int(userId)
         with col2:
             st.write('.\n')
@@ -248,7 +260,11 @@ with user_based_container:
                         caption = f"{row['title']} ({row['rating']})"
                         # UNNCOMENT FOR REAL APP
                         response = requests.get(f"""https://api.themoviedb.org/3/find/{row['imdb_id']}?api_key={API_key}&language=en-US&external_source=imdb_id""")
-                        st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        try:
+                            st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        except:
+                        # COMMENT FOR REAL APP
+                            st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto") 
                         # COMMENT FOR REAL APP
                         # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         
