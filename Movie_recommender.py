@@ -228,7 +228,7 @@ with user_based_container:
             st.write('.\n')
             st.write('Choose user:')
         with col1:
-            userId = st.number_input('', value=15, min_value=1, step=1, max_value=671)
+            userId = int(st.number_input('', value=15, min_value=1, step=1, max_value=671))
         with col2:
             st.write('.\n')
             submit_user_based = st.form_submit_button('Show')
