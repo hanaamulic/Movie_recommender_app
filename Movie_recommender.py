@@ -35,7 +35,6 @@ def get_cos_sim(series):
     if(series.name == 'description'):
         tf = TfidfVectorizer(analyzer='word',ngram_range=(1,2),min_df=0,stop_words='english')
         tfidf_matrix = tf.fit_transform(series.values.astype('U'))
-        
         cos_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
         return cos_sim
     else:
