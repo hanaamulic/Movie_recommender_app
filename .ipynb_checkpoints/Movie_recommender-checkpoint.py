@@ -228,7 +228,7 @@ with user_based_container:
             st.write('.\n')
             st.write('Choose user:')
         with col1:
-            userId = st.number_input('', value=78, min_value=1, step=1, max_value=671)
+            userId = st.number_input('', value=5, min_value=1, step=1, max_value=671)
             userId = int(userId)
         with col2:
             st.write('.\n')
@@ -261,9 +261,11 @@ with user_based_container:
                         caption = f"{row['title']} ({row['est_score']:.2f})"
                         # UNNCOMENT FOR REAL APP
                         response = requests.get(f"""https://api.themoviedb.org/3/find/{row['imdb_id']}?api_key={API_key}&language=en-US&external_source=imdb_id""")
-                        st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        try:
+                            st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        except:
                         # COMMENT FOR REAL APP
-                        # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")  
+                            st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")  
                         
                         
                         
@@ -275,9 +277,12 @@ with user_based_container:
                     with temp4[m]:
                         caption = f"{row['title']} ({row['est_score']:.2f})"
                         # UNNCOMENT FOR REAL APP
+                        
                         response = requests.get(f"""https://api.themoviedb.org/3/find/{row['imdb_id']}?api_key={API_key}&language=en-US&external_source=imdb_id""")
-                        st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        try:
+                            st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        except:
                         # COMMENT FOR REAL APP
-                        # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                            st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
         else:
             st.write('Insert existing user')     
