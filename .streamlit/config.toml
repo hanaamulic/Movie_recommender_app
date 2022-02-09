@@ -1,6 +1,3 @@
-[server]
-headless = true
-port = 8501
 [theme]
 primaryColor="#bf797c"
 backgroundColor="#052707"
