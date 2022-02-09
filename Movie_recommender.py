@@ -228,7 +228,7 @@ with user_based_container:
             st.write('.\n')
             st.write('Choose user:')
         with col1:
-            userId = st.number_input('', value=78, min_value=1, step=1, max_value=671)
+            userId = st.number_input('', value=5, min_value=1, step=1, max_value=671)
             userId = int(userId)
         with col2:
             st.write('.\n')
