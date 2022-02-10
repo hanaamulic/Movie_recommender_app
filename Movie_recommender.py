@@ -132,7 +132,7 @@ with top_container:
                         st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                     except:
                         # COMMENT FOR REAL APP
-                        st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        st.image(('rsz_movie_default.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                     # COMMENT FOR REAL APP
                     # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
         else:
@@ -146,7 +146,7 @@ with top_container:
                         st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                     except:
                         # COMMENT FOR REAL APP
-                        st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        st.image(('rsz_movie_default.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                     # COMMENT FOR REAL APP
                     # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
             
@@ -190,7 +190,7 @@ with content_container:
                             st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         except:
                         # COMMENT FOR REAL APP
-                            st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                            st.image(('rsz_movie_default.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         # COMMENT FOR REAL APP
                         # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
         
@@ -239,7 +239,7 @@ with actor_director_container:
                             st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         except:
                         # COMMENT FOR REAL APP
-                            st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                            st.image(('rsz_movie_default.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         # COMMENT FOR REAL APP
                         # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
         
