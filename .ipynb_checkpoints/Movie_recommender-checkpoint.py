@@ -14,7 +14,14 @@ st.set_page_config(layout="wide")
 
 API_key = 'd06b517b45b8643d8cdb739e04465106'
 
+hide_img_fs = '''
+<style>
+button[title="View fullscreen"]{
+    visibility: hidden;}
+</style>
+'''
 
+st.markdown(hide_img_fs, unsafe_allow_html=True)
 # all_movies = pd.read_csv('data/movies_metadata.csv')
 # all_movies = all_movies.drop([19730,29503,35587],axis=0)
 # all_movies['id'] = all_movies['id'].astype(str).astype(int)
