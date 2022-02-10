@@ -13,7 +13,6 @@ import pickle
 st.set_page_config(layout="wide")
 
 API_key = 'd06b517b45b8643d8cdb739e04465106'
-
 hide_img_fs = '''
 <style>
 button[title="View fullscreen"]{
@@ -22,6 +21,7 @@ button[title="View fullscreen"]{
 '''
 
 st.markdown(hide_img_fs, unsafe_allow_html=True)
+
 # all_movies = pd.read_csv('data/movies_metadata.csv')
 # all_movies = all_movies.drop([19730,29503,35587],axis=0)
 # all_movies['id'] = all_movies['id'].astype(str).astype(int)
@@ -128,7 +128,11 @@ with top_container:
                     # st.caption(row['title'])
                     # UNNCOMENT FOR REAL APP
                     response = requests.get(f"""https://api.themoviedb.org/3/find/{row['imdb_id']}?api_key={API_key}&language=en-US&external_source=imdb_id""")
-                    st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                    try:
+                        st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                    except:
+                        # COMMENT FOR REAL APP
+                        st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                     # COMMENT FOR REAL APP
                     # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
         else:
@@ -138,7 +142,11 @@ with top_container:
                     # st.caption(row['title'])
                     # UNNCOMENT FOR REAL APP
                     response = requests.get(f"""https://api.themoviedb.org/3/find/{row['imdb_id']}?api_key={API_key}&language=en-US&external_source=imdb_id""")
-                    st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                    try:
+                        st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                    except:
+                        # COMMENT FOR REAL APP
+                        st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                     # COMMENT FOR REAL APP
                     # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
             
@@ -178,7 +186,11 @@ with content_container:
                     with temp1[j]:
                         # UNNCOMENT FOR REAL APP
                         response = requests.get(f"""https://api.themoviedb.org/3/find/{row['imdb_id']}?api_key={API_key}&language=en-US&external_source=imdb_id""")
-                        st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        try:
+                            st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        except:
+                        # COMMENT FOR REAL APP
+                            st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         # COMMENT FOR REAL APP
                         # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
         
@@ -223,7 +235,11 @@ with actor_director_container:
                     with temp1[j]:
                         # UNNCOMENT FOR REAL APP
                         response = requests.get(f"""https://api.themoviedb.org/3/find/{row['imdb_id']}?api_key={API_key}&language=en-US&external_source=imdb_id""")
-                        st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        try:
+                            st.image(('https://image.tmdb.org/t/p/w92' + response.json()['movie_results'][0]['poster_path']), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
+                        except:
+                        # COMMENT FOR REAL APP
+                            st.image(('rsz_movie_default.jpg'), caption=caption, width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
                         # COMMENT FOR REAL APP
                         # st.image(('https://image.tmdb.org/t/p/w92' + '/2gvbZMtV1Zsl7FedJa5ysbpBx2G.jpg'), caption=row['title'], width=None, use_column_width='always', clamp=False, channels="RGB", output_format="auto")
         
