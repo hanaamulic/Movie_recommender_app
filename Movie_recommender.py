@@ -182,8 +182,8 @@ with content_container:
         
 ## Actor director movies
 ##----------------------------------------------------------------------------------------##
-st.header('Item based recommender (cast, crew, keywords)')
-st.write('This recommender is based on similarities in several categories: Director, leading cast and keywords.')   
+st.header('Item based recommender (cast, crew)')
+st.write('This recommender is based on similarities in several categories: Director, leading cast.')   
 
 actor_director_container = st.container()
 with actor_director_container:
@@ -203,7 +203,6 @@ with actor_director_container:
         
         
         if (title in simple_reccomenders.title.unique() ) | (simple_reccomenders.title.str.contains(fr"{title}", case=False).any()):
-            st.write(title)
             if title in simple_reccomenders.title.unique():
                 title = title
             else:
